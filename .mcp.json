@@ -1,0 +1,59 @@
+{
+  "mcpServers": {
+    "memory": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "elevenlabs": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["elevenlabs-mcp"],
+      "env": {
+        "ELEVENLABS_API_KEY": "sk_0787c41977cc3833d67d2e5a95186f3ce6481338581cd12c"
+      }
+    },
+    "image-gen": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@gongrzhe/image-gen-server"],
+      "env": {
+        "REPLICATE_API_TOKEN": "r8_R889a2b7DLi3HUmkO1or5eDDMaqFcTx2RJ04v",
+        "MODEL": "black-forest-labs/flux-1.1-pro"
+      }
+    },
+    "mediaProcessor": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-media-processor@latest"]
+    },
+    "obs": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/home/codingbutter/GitHub/obs-mcp/build/index.js"],
+      "env": {
+        "OBS_WEBSOCKET_PASSWORD": "HN0QBANxpA2np6K8"
+      }
+    },
+    "vs-code": {
+      "type": "sse",
+      "url": "http://127.0.0.1:6010/sse"
+    },
+    "twitch-chat": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y","twitch-irc-mcp"],
+      "env": {
+        "TWITCH_USERNAME": "rustybutterbot",
+        "TWITCH_OAUTH_TOKEN": "by6mvc1t7asvon86ytmkcvbmbg0nyi",
+        "TWITCH_CHANNEL": "rustybutterbot",
+        "DEBUG": "*"
+      }
+    }
+  }
+}
