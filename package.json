@@ -1,0 +1,80 @@
+{
+  "name": "vscode-mcp-websocket",
+  "displayName": "MCP WebSocket Server",
+  "description": "WebSocket server for Model Context Protocol (MCP) to control VS Code",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcpServer.toggle",
+        "title": "Toggle MCP Server On/Off",
+        "category": "MCP Server"
+      }
+    ],
+    "configuration": {
+      "title": "MCP Server Settings",
+      "properties": {
+        "mcp-server.port": {
+          "type": "number",
+          "default": 3000,
+          "description": "Port number for the MCP WebSocket server"
+        },
+        "mcp-server.autoStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, start the MCP server automatically on VS Code startup"
+        },
+        "mcp-server.defaultTypingSpeed": {
+          "type": "number",
+          "default": 50,
+          "description": "Default typing speed in milliseconds per character (if not specified in command)"
+        },
+        "mcp-server.auth.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, require authentication for WebSocket connections"
+        },
+        "mcp-server.auth.token": {
+          "type": "string",
+          "default": "",
+          "description": "Authentication token for securing WebSocket connections (required if auth.enabled is true)"
+        },
+        "mcp-server.auth.generateRandomToken": {
+          "type": "boolean",
+          "default": true,
+          "description": "If true, generate a random token on startup when no token is provided"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "16.x",
+    "@types/mocha": "^10.0.1",
+    "@types/ws": "^8.5.4",
+    "eslint": "^8.34.0",
+    "typescript": "^5.0.2",
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}
